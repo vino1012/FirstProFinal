@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	  xmlns:beans="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow 
+      http://www.springframework.org/schema/webflow/spring-webflow.xsd
+      http://www.springframework.org/schema/beans
+	  http://www.springframework.org/schema/beans/spring-beans.xsd">
+	  
+	  
+	  <var name="shippingaddress" class="com.eco.model.ShippingAddress" />
+      <var name="billingaddress" class="com.eco.model.BillingAddress" />
+      
+      
+     <view-state id="collectShippingDetail" view="shippingaddress.jsp" model="shippingaddress">
+        <transition on="shippingDetailCollected" to="collectBillingDetail" />
+    </view-state>
+	  
+	 <view-state id="collectBillingDetail" view="billingaddress.jsp" model="billingaddress">
+        <transition on="billingDetailCollected" to="thankYouPage" />
+        <transition on="backToShippingInfo" to="collectShippingDetail" />
+    </view-state>
+	  
+	  <view-state id="thankYouPage">
+	  	<transition to="endState" />
+	  </view-state>
+	  
+	  <end-state id="endState" />
+	  
+	  
+
+
+
+
+
+	  
+</flow>
